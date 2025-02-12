@@ -1,7 +1,4 @@
 package com.sdrtuner;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -10,16 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-//import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-//import android.support.v4.app.ActivityCompat;
-//import android.support.v4.content.ContextCompat;
-//import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -46,6 +39,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,8 +56,7 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 	private MenuItem mi_startStop = null;
 	private MenuItem mi_demodulationMode = null;
 	private MenuItem mi_record = null;
-	private FrameLayout fl_analyzerFrame = null;
-	private AnalyzerSurface analyzerSurface = null;
+    private AnalyzerSurface analyzerSurface = null;
 	private AnalyzerProcessingLoop analyzerProcessingLoop = null;
 	private IQSourceInterface source = null;
 	private Scheduler scheduler = null;
@@ -85,8 +81,7 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 	private static final int RTLSDR_SOURCE = 2;
 	private static final String[] SOURCE_NAMES = new String[] {"filesource", "hackrf", "rtlsdr"};
 
-	private Spinner spinnerFreqStep,spinnerFreqBand;
-	private int freqStep = 1, freqBand = 1000000;
+    private int freqStep = 1, freqBand = 1000000;
 	LinearLayout fl_controls;
 	RelativeLayout fl_base;
 	Button btn_freqMines,btn_freqPlus;
@@ -142,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 		}
 
 		// Get references to the GUI components:
-		fl_analyzerFrame = (FrameLayout) findViewById(R.id.fl_analyzerFrame);
+        FrameLayout fl_analyzerFrame = (FrameLayout) findViewById(R.id.fl_analyzerFrame);
 
 		// Create a analyzer surface:
 		analyzerSurface = new AnalyzerSurface(this,this);
@@ -159,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 		// Put the analyzer surface in the analyzer frame of the layout:
 		fl_analyzerFrame.addView(analyzerSurface);
 
-		spinnerFreqStep = (Spinner) findViewById(R.id.spn_freqStep);
-		spinnerFreqBand = (Spinner) findViewById(R.id.spn_freqBand);
+        Spinner spinnerFreqStep = (Spinner) findViewById(R.id.spn_freqStep);
+        Spinner spinnerFreqBand = (Spinner) findViewById(R.id.spn_freqBand);
 		btn_freqMines   = (Button)  findViewById(R.id.btn_freqMines);
 		btn_freqPlus    = (Button)  findViewById(R.id.btn_freqPlus);
 		txt_freq        = (TextView) findViewById(R.id.txt_freq);
@@ -327,7 +322,8 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putBoolean(getString(R.string.save_state_running), running);
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(getString(R.string.save_state_running), running);
 		outState.putInt(getString(R.string.save_state_demodulatorMode), demodulationMode);
 		if(analyzerSurface != null) {
 			outState.putLong(getString(R.string.save_state_channelFrequency), analyzerSurface.getChannelFrequency());
@@ -652,7 +648,8 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-		switch (requestCode) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
 			case PERMISSION_REQUEST_FILE_SOURCE_READ_FILES: {
 				// If request is cancelled, the result arrays are empty.
 				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

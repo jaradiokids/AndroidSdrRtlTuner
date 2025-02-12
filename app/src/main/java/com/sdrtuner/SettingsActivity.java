@@ -5,11 +5,11 @@ import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class SettingsActivity extends AppCompatActivity {
 

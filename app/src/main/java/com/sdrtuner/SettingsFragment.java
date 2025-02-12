@@ -1,5 +1,7 @@
 package com.sdrtuner;
 
+import static com.sdrtuner.SettingsActivity.PERMISSION_REQUEST_LOGGING_WRITE_FILES;
+
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.CursorLoader;
@@ -10,21 +12,19 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.provider.MediaStore;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-
 import java.io.File;
-
-import static com.sdrtuner.SettingsActivity.PERMISSION_REQUEST_LOGGING_WRITE_FILES;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener,
 																	Preference.OnPreferenceClickListener {
