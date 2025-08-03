@@ -16,12 +16,12 @@ In order to use this app you will need:
 
 -------------------------------
 Release Summary of this fork<br>
-  Change minimum frequency to 0MHz for R828 R820.<br>
-  Add AGC level for R828D.<br>
-  Add Direct Sampling SW.<br>
-  Increase number of FIR Filter taps to around n=50.<br>
-  Change default AM width to 6kHz.<br>
-  Set default squelch level in -50dB.<br>
+- Change minimum frequency to 0MHz for R828D/R820T.<br>
+- Add AGC level for R828D.<br>
+- Add Direct Sampling SW.<br>
+- Increase number of FIR Filter taps to around n=50.<br>
+- Change default AM width to 6kHz.<br>
+- Set default squelch level in -50dB.<br>
 
 <a href  ="https://github.com/jaradiokids/AndroidSdrRtlTuner/blob/master/Screenshot.png">
 <img src ="https://github.com/jaradiokids/AndroidSdrRtlTuner/blob/master/Screenshot.png" 
