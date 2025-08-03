@@ -27,13 +27,15 @@ public class Demodulator extends Thread {
 	private int userFilterCutOff = 0;
 	private SamplePacket quadratureSamples;
 	public static final int[] MIN_USER_FILTER_WIDTH = {0,		// off
-														3000,	// AM
+														//3000,	// AM
+														1500,	// narrowed for AM
 														3000,	// nFM
 														50000,	// wFM
 														1500,	// LSB
 														1500};	// USB
 	public static final int[] MAX_USER_FILTER_WIDTH = {0,		// off
-														15000,	// AM
+														//15000,	// AM
+														5000,	// narrowed for AM
 														15000,	// nFM
 														120000,	// wFM
 														5000,	// LSB

@@ -86,7 +86,9 @@ public class AnalyzerSurface extends SurfaceView implements SurfaceHolder.Callba
 	private boolean demodulationEnabled = false;	// indicates whether demodulation is enabled or disabled
 	private long channelFrequency = -1;				// center frequency of the demodulator
 	private int channelWidth = -1;					// (half) width of the channel filter of the demodulator
-	private float squelch = Float.NaN;				// squelch threshold in dB
+
+	//private float squelch = Float.NaN;				// squelch threshold in dB
+	private float squelch = -50;				// squelch threshold in dB
 	private boolean squelchSatisfied = false;		// indicates whether the current signal is strong enough to cross the squelch threshold
 	private boolean showLowerBand = true;			// indicates whether the lower side band of the channel selector is visible
 	private boolean showUpperBand = true;			// indicates whether the upper side band of the channel selector is visible

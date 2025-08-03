@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 	Button btn_freqMines,btn_freqPlus;
 	TextView txt_freq;
 
+	// for Direct Sampling Mode
+	private static Switch mDirectSamplingSw = null;
+	static boolean g_DirectSampling = false;
+	boolean last_g_DirectSampling = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -286,6 +291,30 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 
 		// Set the hardware volume keys to work on the music audio stream:
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+		// Direct Sampling Switch
+		mDirectSamplingSw = findViewById(R.id.drctSmplSw);
+		mDirectSamplingSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+				g_DirectSampling = getSwitchDirectSampling();
+				if(last_g_DirectSampling != g_DirectSampling){
+					source.close();
+					onStart();
+				}
+				last_g_DirectSampling = g_DirectSampling;
+			}
+		});
+
+	}
+
+	// for Direct Sampling Mode
+	public static boolean getSwitchDirectSampling(){
+		if (mDirectSamplingSw.isChecked()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -581,6 +610,7 @@ public class MainActivity extends AppCompatActivity implements IQSourceInterface
 
 			savedInstanceState = null; // not needed any more...
 		}
+
 	}
 
 	@Override

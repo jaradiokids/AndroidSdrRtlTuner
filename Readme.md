@@ -14,9 +14,16 @@ In order to use this app you will need:
 - A HackRF or an RTL-SDR dongle (about 8$)
 - An Android device that either supports USB OTG or has an USB host port
 
-On google play:
-https://play.google.com/store/apps/details?id=com.sdrtuner
+-------------------------------
+Release Summary of this fork
+  Change minimum frequency to 0MHz for R828 R820
+  Add AGC level for R828D
+  Add Direct Sampling SW
+  Increase number of FIR Filter taps to around n=50
+  Change default AM width to 6kHz
+  Set default squelch level in -50dB
 
-<a href="https://github.com/takyonxxx/AndroidSdrRtlTuner/blob/master/Screen.png">
-		<img src="https://github.com/takyonxxx/AndroidSdrRtlTuner/blob/master/Screen.png" 
-		name="Image3" align="bottom" width="800" height="678" border="1"></a>
+<a href  ="https://github.com/jaradiokids/AndroidSdrRtlTuner/blob/master/Screenshot.png">
+<img src ="https://github.com/jaradiokids/AndroidSdrRtlTuner/blob/master/Screenshot.png" 
+		width="720" height="1600" ></a>
+

@@ -28,8 +28,10 @@ public class RtlsdrSource implements IQSourceInterface {
 	public static final int RTL_TCP_COMMAND_SET_FREQ_CORR 	= 0x05;
 	public static final int RTL_TCP_COMMAND_SET_IFGAIN 		= 0x06;
 	public static final int RTL_TCP_COMMAND_SET_AGC_MODE 	= 0x08;
+	public static final int RTL_TCP_COMMAND_SET_DIRECT_SAMPLING = 0x09;	// for Direct Sampling
 	public final String[] COMMAND_NAME = {"invalid", "SET_FREQUENY", "SET_SAMPLERATE", "SET_GAIN_MODE",
-			"SET_GAIN", "SET_FREQ_CORR", "SET_IFGAIN", "SET_TEST_MODE", "SET_ADC_MODE"};
+			//"SET_GAIN", "SET_FREQ_CORR", "SET_IFGAIN", "SET_TEST_MODE", "SET_ADC_MODE"};
+			"SET_GAIN", "SET_FREQ_CORR", "SET_IFGAIN", "SET_TEST_MODE", "SET_ADC_MODE", "SET_DIRC_SAMP"};	// for Direct Sampling
 
 	private ReceiverThread receiverThread = null;
 	private CommandThread commandThread = null;
@@ -61,9 +63,12 @@ public class RtlsdrSource implements IQSourceInterface {
 												22000000l,	// FC0012
 												22000000l,	// FC0013
 												146000000l,	// FC2580
-												24000000l,	// R820T
-												24000000l};	// R828D
-	public static final long[] MAX_FREQUENCY = { 0l,			// invalid
+												//24000000l,	// R820T
+												0l,				// R820T
+												//24000000l};	// R828D
+												0l};			// R828D
+
+public static final long[] MAX_FREQUENCY = { 0l,			// invalid
 												3000000000l,	// E4000		actual max freq: 2200000000l
 												3000000000l,	// FC0012		actual max freq: 948000000l
 												3000000000l,	// FC0013		actual max freq: 1100000000l
@@ -79,7 +84,9 @@ public class RtlsdrSource implements IQSourceInterface {
 			{0},																		// FC2580
 			{0, 9, 14, 27, 37, 77, 87, 125, 144, 157, 166, 197, 207, 229, 254, 280,
 					297, 328, 338, 364, 372, 386, 402, 421, 434, 439, 445, 480, 496},	// R820T
-			{0}																			// R828D ??
+			//{0}																		// R828D ??
+			{0, 9, 14, 27, 37, 77, 87, 125, 144, 157, 166, 197, 207, 229, 254, 280,
+					297, 328, 338, 364, 372, 386, 402, 421, 434, 439, 445, 480, 496}	// R828D
 	};
 	public static final int PACKET_SIZE = 16384;
 
@@ -720,6 +727,13 @@ public class RtlsdrSource implements IQSourceInterface {
 
 				// AGC mode:
 				executeCommand(commandToByteArray(RTL_TCP_COMMAND_SET_AGC_MODE, (int)(automaticGainControl ? 0x01 : 0x00)));
+
+				// Direct Sampling Mode
+				if(MainActivity.getSwitchDirectSampling()){
+					executeCommand(commandToByteArray(RTL_TCP_COMMAND_SET_DIRECT_SAMPLING, (int)0x02));
+				} else {
+					executeCommand(commandToByteArray(RTL_TCP_COMMAND_SET_DIRECT_SAMPLING, (int)0x00));
+				}
 
 				return true;
 

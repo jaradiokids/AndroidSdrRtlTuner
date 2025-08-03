@@ -221,7 +221,8 @@ public class FirFilter {
 		// Calculate number of tabs
 		// Based on formula from Multirate Signal Processing for
 		// Communications Systems, fredric j harris
-		int ntaps = (int)(attenuation_dB*sampling_freq/(22.0*transition_width));
+		//int ntaps = (int)(attenuation_dB*sampling_freq/(22.0*transition_width));
+		int ntaps = (int)(attenuation_dB*sampling_freq/(4.0*transition_width));  // increase number of taps
 		if ((ntaps & 1) == 0)	// if even...
 			ntaps++;		// ...make odd
 
