@@ -15,13 +15,13 @@ In order to use this app you will need:
 - An Android device that either supports USB OTG or has an USB host port
 
 -------------------------------
-Release Summary of this fork
-  Change minimum frequency to 0MHz for R828 R820
-  Add AGC level for R828D
-  Add Direct Sampling SW
-  Increase number of FIR Filter taps to around n=50
-  Change default AM width to 6kHz
-  Set default squelch level in -50dB
+Release Summary of this fork<br>
+  Change minimum frequency to 0MHz for R828 R820.<br>
+  Add AGC level for R828D.<br>
+  Add Direct Sampling SW.<br>
+  Increase number of FIR Filter taps to around n=50.<br>
+  Change default AM width to 6kHz.<br>
+  Set default squelch level in -50dB.<br>
 
 <a href  ="https://github.com/jaradiokids/AndroidSdrRtlTuner/blob/master/Screenshot.png">
 <img src ="https://github.com/jaradiokids/AndroidSdrRtlTuner/blob/master/Screenshot.png" 
